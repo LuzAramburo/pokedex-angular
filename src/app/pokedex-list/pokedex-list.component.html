@@ -1,15 +1,16 @@
 <div>
   <h2>Pokédex</h2>
-  <p>Search for a pokémon by name or its national pokédex number</p>
-  <input type="text" disabled>
+<!--  <p>Search for a pokémon by name or its national pokédex number</p>-->
+<!--  <input type="text" disabled>-->
   <div>
-    <div>
-      <img src="" alt="">
-      <div>Nom 000</div>
-      <div>NAME</div>
-      <div>
-        <div>TYPE</div>
-      </div>
-    </div>
+
+    @if (pokemons.length > 0) {
+      @for (pokemon of pokemons; track pokemon.name) {
+        <a [routerLink]="[pokemon.name]">
+          <img src="" alt="">
+          <div>{{pokemon.name}}</div>
+        </a>
+      }
+    }
   </div>
 </div>
