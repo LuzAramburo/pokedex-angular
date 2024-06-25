@@ -1,10 +1,9 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {PokemonService} from "../services/pokemon.service";
 import {Router, RouterLink} from "@angular/router";
 import {PokemonPokedex} from "../models/pokedex.model";
-import {catchError, Observable, Subscription, throwError} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {AsyncPipe} from "@angular/common";
-import {PokemonResponse} from "../models/pokemon.model";
 
 @Component({
   selector: 'app-pokedex-list',
@@ -19,16 +18,21 @@ import {PokemonResponse} from "../models/pokemon.model";
 export class PokedexListComponent implements OnInit {
   private pokemonService = inject(PokemonService)
   private router = inject(Router)
+  private destroyRef = inject(DestroyRef)
 
   pokemons$: Observable<PokemonPokedex[]> | null = null
   error: null | string = null
 
   ngOnInit() {
-    this.pokemonService.selectedPokemon.subscribe(
+    const sub = this.pokemonService.selectedPokemon$.subscribe(
       (response) => {
         if (response) this.router.navigate(['/pokedex', response?.id])
       }
     )
+    this.destroyRef.onDestroy(() => {
+      sub.unsubscribe()
+    })
+
     this.pokemons$ = this.pokemonService.getPokemons()
     catchError(err => {
       console.error(err)

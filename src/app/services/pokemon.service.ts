@@ -12,7 +12,8 @@ const offset = 100
 })
 export class PokemonService {
   private http = inject(HttpClient)
-  selectedPokemon = new BehaviorSubject<PokemonResponse | null>(null);
+  private selectedPokemon = new BehaviorSubject<PokemonResponse | null>(null);
+  selectedPokemon$ = this.selectedPokemon.asObservable()
 
   getPokemons() {
     return this.http.get<PokedexResponse>(`${baseUrl}?limit=${offset}`).pipe(
@@ -28,5 +29,9 @@ export class PokemonService {
     return this.http.get<PokemonResponse>(url).pipe(
       tap(response => this.selectedPokemon.next(response))
     )
+  }
+
+  clearSelectedPokemon() {
+    return this.selectedPokemon.next(null)
   }
 }
