@@ -1,7 +1,11 @@
 <a routerLink="">Go back</a>
 @if (pokemon | async; as pokemon) {
-  <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
-  <div>{{ pokemon.name }}</div>
+  <div>
+    <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
+    <div>{{ pokemon.name }}</div>
+  </div>
 } @else {
-  Loading...
+  <div>
+    Loading...
+  </div>
 }

@@ -1,11 +1,11 @@
 @if (pokemons| async; as pokemons; ) {
-  <ul>
+  <div class="container">
     @for (pokemon of pokemons; track pokemon.name) {
-      <li><a [routerLink]="[pokemon.name]">
-          <div>{{ pokemon.name }}</div>
-        </a></li>
+      <a class="item" [routerLink]="[pokemon.name]">
+        {{ pokemon.name }}
+    </a>
     }
-  </ul>
+</div>
 } @else {
   <div>Fetching pokémons...</div>
 }
