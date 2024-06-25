@@ -1,12 +1,16 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Pokemon, PokemonService} from "../services/pokemon.service";
+import {PokemonService} from "../services/pokemon.service";
 import {RouterLink} from "@angular/router";
+import {PokemonPokedex} from "../models/pokedex.model";
+import {map, Observable} from "rxjs";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-pokedex-list',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    AsyncPipe
   ],
   templateUrl: './pokedex-list.component.html',
   styleUrl: './pokedex-list.component.css'
@@ -14,15 +18,12 @@ import {RouterLink} from "@angular/router";
 export class PokedexListComponent implements OnInit {
   private pokemonService = inject(PokemonService)
 
-  pokemons: Pokemon[] = []
-  isFetching = true
+  pokemons: Observable<PokemonPokedex[]> | null = null
   error: null | string = null
 
   ngOnInit() {
-    this.pokemonService.getPokemons().subscribe({
-      next: (response) => {
-        this.pokemons = response.results
-      }
-    })
+    this.pokemons = this.pokemonService.getPokemons().pipe(
+      map(response => response.results)
+    )
   }
 }

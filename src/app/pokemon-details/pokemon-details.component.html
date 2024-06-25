@@ -1,7 +1,7 @@
-<a href="#">Go back</a>
-<img src="" alt="">
-<div>Nom 000</div>
-<div>NAME</div>
-<div>
-  <div>TYPE</div>
-</div>
+<a routerLink="">Go back</a>
+@if (pokemon | async; as pokemon) {
+  <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
+  <div>{{ pokemon.name }}</div>
+} @else {
+  Loading...
+}
