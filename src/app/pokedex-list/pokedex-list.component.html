@@ -1,9 +1,9 @@
 @if (pokemons$| async; as pokemons; ) {
   <div class="container">
     @for (pokemon of pokemons; track pokemon.name) {
-      <a class="item" [routerLink]="[pokemon.name]">
+      <button class="item" (click)="goToDetails(pokemon.url)">
         {{ pokemon.name }}
-      </a>
+      </button>
     }
   </div>
 } @else if (error) {
