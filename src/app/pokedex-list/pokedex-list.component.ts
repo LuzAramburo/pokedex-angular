@@ -3,7 +3,7 @@ import {PokemonService} from "../services/pokemon.service";
 import {Router, RouterLink} from "@angular/router";
 import {catchError, throwError} from "rxjs";
 import {AsyncPipe} from "@angular/common";
-import {PokemonResponse} from "../models/pokemon.model";
+import {PokemonDetails} from "../models/pokemon.model";
 
 @Component({
   selector: 'app-pokedex-list',
@@ -37,11 +37,8 @@ export class PokedexListComponent implements OnInit {
     })
   }
 
-  goToDetails(url: string) {
-    this.pokemonService.getPokemonByUrl(url).subscribe(
-      (response: PokemonResponse) => {
-        this.router.navigate(['/pokedex', response?.id])
-      }
-    )
+  goToDetails(pokemon: PokemonDetails) {
+    this.pokemonService.selectPokemon(pokemon)
+    this.router.navigate(['/pokedex', pokemon.id])
   }
 }

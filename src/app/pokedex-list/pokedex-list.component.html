@@ -1,7 +1,7 @@
 @if (pokemons$| async; as pokemons; ) {
   <div class="container">
     @for (pokemon of pokemons; track pokemon.name) {
-      <button class="item" (click)="goToDetails(pokemon.url)">
+      <button class="item" (click)="goToDetails(pokemon)">
         <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
         {{ pokemon.name }}
         <span class="types">
