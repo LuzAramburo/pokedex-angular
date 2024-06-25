@@ -1,8 +1,6 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {PokemonResponse} from "../models/pokemon.model";
+import {Component, inject} from '@angular/core';
 import {PokemonService} from "../services/pokemon.service";
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {Observable} from "rxjs";
+import {Router, RouterLink} from "@angular/router";
 import {AsyncPipe} from "@angular/common";
 
 @Component({
@@ -17,7 +15,6 @@ import {AsyncPipe} from "@angular/common";
 })
 export class PokemonDetailsComponent {
   private pokemonService = inject(PokemonService)
-  private route = inject(ActivatedRoute)
   private router = inject(Router)
   pokemon$ = this.pokemonService.selectedPokemon$
 

@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PokedexResponse} from "../models/pokedex.model";
 import {PokemonResponse} from "../models/pokemon.model";
-import {BehaviorSubject, catchError, map, Subject, tap, throwError} from "rxjs";
+import {BehaviorSubject, map, tap} from "rxjs";
 
 const baseUrl = "https://pokeapi.co/api/v2/pokemon"
 const offset = 100
