@@ -1,11 +1,13 @@
-@if (pokemons| async; as pokemons; ) {
+@if (pokemons$| async; as pokemons; ) {
   <div class="container">
     @for (pokemon of pokemons; track pokemon.name) {
       <a class="item" [routerLink]="[pokemon.name]">
         {{ pokemon.name }}
-    </a>
+      </a>
     }
-</div>
+  </div>
+} @else if (error) {
+  <div>{{ error }}</div>
 } @else {
   <div>Fetching pokémons...</div>
 }

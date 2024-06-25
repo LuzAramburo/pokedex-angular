@@ -18,12 +18,12 @@ import {AsyncPipe} from "@angular/common";
 export class PokemonDetailsComponent implements OnInit {
   private pokemonService = inject(PokemonService)
   private route = inject(ActivatedRoute)
-  pokemon!: Observable<PokemonResponse>;
+  pokemon$!: Observable<PokemonResponse>;
 
   ngOnInit() {
     const pokemonName = this.route.snapshot.params['pokemonId'];
 
-    this.pokemon = this.pokemonService.getPokemonByName(pokemonName)
+    this.pokemon$ = this.pokemonService.getPokemonByName(pokemonName)
 
   }
 }

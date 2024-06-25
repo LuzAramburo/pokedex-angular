@@ -1,5 +1,5 @@
 <a routerLink="">Go back</a>
-@if (pokemon | async; as pokemon) {
+@if (pokemon$ | async; as pokemon) {
   <div>
     <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
     <div>{{ pokemon.name }}</div>
