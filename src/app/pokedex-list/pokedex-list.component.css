@@ -1,13 +1,24 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .item {
   padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-transform: capitalize;
 }
 
 .item:hover {
   background-color: var(--color-secondary);
+}
+
+@media (min-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
