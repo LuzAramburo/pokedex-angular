@@ -2,7 +2,13 @@
   <div class="container">
     @for (pokemon of pokemons; track pokemon.name) {
       <button class="item" (click)="goToDetails(pokemon.url)">
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name">
         {{ pokemon.name }}
+        <span class="types">
+          @for (type of pokemon.types; track type.slot) {
+            <span>{{ type.type.name }}</span>
+          }
+        </span>
       </button>
     }
   </div>

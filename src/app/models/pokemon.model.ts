@@ -19,6 +19,7 @@ export interface PokemonResponse {
   stats: Stat[];
   types: Type[];
   weight: number;
+  url: string;
 }
 
 export interface Ability {
