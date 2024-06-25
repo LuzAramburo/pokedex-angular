@@ -38,7 +38,7 @@ export class PokemonService {
         toArray()
       )),
       // tap(response => console.log(response)),
-      tap(list => this.pokemonList.next(list))
+      tap((list: PokemonDetails[] )=> this.pokemonList.next(list))
     )
   }
 
